@@ -18,6 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="com\networks\mlp\mlp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="com\networks\mlp\mlp.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{69DAC985-8FA2-4686-81FF-B56F923D2383}</ProjectGuid>
     <RootNamespace>Caffeine</RootNamespace>
