@@ -17,14 +17,4 @@
       <UniqueIdentifier>{f3aaf839-f9ef-4653-96e3-78094caaec83}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="com\networks\mlp\mlp.cpp">
-      <Filter>com\networks\MLP</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="com\networks\mlp\mlp.h">
-      <Filter>com\networks\MLP</Filter>
-    </ClInclude>
-  </ItemGroup>
 </Project>
