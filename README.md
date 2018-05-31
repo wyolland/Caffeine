@@ -1,4 +1,7 @@
+<img src="caffeine.png" width="20%">
+
 # Caffeine
+
 A fast machine learning framework.
 
 This framework aims at people who are new to machine learning as well as experienced developers. It is supposed to be easy to use, without sacrificing performence, scalability and individuality.
