@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="com\networks\mlp\mlp.cpp" />
+    <ClCompile Include="DataSet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com\networks\mlp\mlp.h" />
+    <ClInclude Include="DataSet.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{69DAC985-8FA2-4686-81FF-B56F923D2383}</ProjectGuid>

@@ -16,15 +16,27 @@
     <Filter Include="com\networks\MLP">
       <UniqueIdentifier>{f3aaf839-f9ef-4653-96e3-78094caaec83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="com\data\dataset">
+      <UniqueIdentifier>{2f3b9723-5d18-436f-9ef4-8036db12ed60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="com\parser">
+      <UniqueIdentifier>{3c77b753-61a6-4304-8694-8d4c2f526fbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="com\networks\mlp\mlp.cpp">
       <Filter>com\networks\MLP</Filter>
     </ClCompile>
+    <ClCompile Include="DataSet.cpp">
+      <Filter>com\data\dataset</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com\networks\mlp\mlp.h">
       <Filter>com\networks\MLP</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSet.h">
+      <Filter>com\data\dataset</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
