@@ -1,4 +1,4 @@
-<img src="caffeine.png" width="20%">
+<img src="caffeine.png" width="100%">
 
 # Caffeine
 
