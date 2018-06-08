@@ -22,6 +22,9 @@
     <Filter Include="com\parser">
       <UniqueIdentifier>{3c77b753-61a6-4304-8694-8d4c2f526fbb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="com\networks\LSTM">
+      <UniqueIdentifier>{8bdc1455-361c-45d8-a74a-b584b53b0e9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="com\networks\mlp\mlp.cpp">
@@ -30,6 +33,9 @@
     <ClCompile Include="DataSet.cpp">
       <Filter>com\data\dataset</Filter>
     </ClCompile>
+    <ClCompile Include="lstm.cpp">
+      <Filter>com\networks\LSTM</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com\networks\mlp\mlp.h">
@@ -37,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="DataSet.h">
       <Filter>com\data\dataset</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm.h">
+      <Filter>com\networks\LSTM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
