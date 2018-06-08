@@ -1,5 +1,9 @@
 #pragma once
 
+struct LSTM_Argument
+{
+
+};
 
 class LongShortTermMemory
 {
