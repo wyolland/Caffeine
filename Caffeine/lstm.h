@@ -3,6 +3,7 @@
 
 struct LSTM_Argument
 {
+	uint8_t batch_learn;
 	uint32_t timesteps;
 };
 
@@ -12,6 +13,9 @@ public:
 	//maybe remove constructor as no object should be createt of this class
 	LongShortTermMemory();
 	~LongShortTermMemory();
+
+	virtual void unroll() = 0;
+	virtual void backpropagate() = 0;
 
 	float * input;
 	float * output;
@@ -27,6 +31,7 @@ public:
 	~DefaultLSTM();
 
 	void unroll();
+	void backpropagate();
 };
 
 class GersSchmidhuberLSTM : LongShortTermMemory
