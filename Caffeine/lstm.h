@@ -1,8 +1,9 @@
 #pragma once
+#include <string>
 
 struct LSTM_Argument
 {
-
+	uint32_t timesteps;
 };
 
 class LongShortTermMemory
@@ -22,9 +23,10 @@ private:
 class DefaultLSTM : LongShortTermMemory
 {
 public:
-	DefaultLSTM();
+	DefaultLSTM(LSTM_Argument *);
 	~DefaultLSTM();
 
+	void unroll();
 };
 
 class GersSchmidhuberLSTM : LongShortTermMemory

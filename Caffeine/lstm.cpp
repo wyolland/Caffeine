@@ -12,7 +12,7 @@ LongShortTermMemory::~LongShortTermMemory()
 
 
 
-DefaultLSTM::DefaultLSTM()
+DefaultLSTM::DefaultLSTM(LSTM_Argument * arg)
 {
 }
 
