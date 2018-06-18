@@ -1,0 +1,27 @@
+DATA:
+	-Cleaning
+	-Integration
+	-Correlation
+	-StatisticalTests
+	-Reduction
+	-Transformation
+	-Discretisation
+
+Descision Tree
+NeuralNetworks
+	-Perceptron
+	-MLP
+	-RNN
+	-LSTM
+	-CNN
+	-...
+Descriptive modelling
+Apriori
+Clustering
+	-K-means
+	-K-medoid
+	-H-cluster
+	-Self-organizing-maps
+	-growing neural gas
+Genetic Algorithm
+FuzzyRepresentation
