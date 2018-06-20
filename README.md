@@ -14,10 +14,17 @@ The framework consits of three main parts.
 * This package contains plenty of methods to preprocess a dataset from a file. As an example you can run a principal component analysis to reduce the dimension of the vectorspace you are operating in.
 You might also be interestet in mapping a n-tuple of various datatypes to a input of a neural network, wich also can be done by this packeage.
 
-#### Networks
+#### Artificial Intelligence
 
-* Common architectures bla
+This package is organized in the different branches of AI. On the top level, the branch of machine learning, fuzzy systems, genetic computation and probabilistic approaches cluster the many different algorithms into groups.
+* Machine learning
+  * Neural networks
+  * Reinfocement learning
+* Fuzzy systems
+* Genetic computation
+* Probabilistic approach
 
 #### Nodes
 
+The node package allows you to build your own computational graphs. You can take advantage of the build in functionality for many different operations and even coplex architectures. In addition you are able to define your own nodes with custom operations, to achive your goal.
 * Computation graph bla bla
