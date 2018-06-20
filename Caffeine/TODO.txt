@@ -25,3 +25,5 @@ Clustering
 	-growing neural gas
 Genetic Algorithm
 FuzzyRepresentation
+
+Ensemble learning with MPI and/or multi-GPU
