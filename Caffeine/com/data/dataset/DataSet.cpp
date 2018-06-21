@@ -82,7 +82,7 @@ void Data::pushback(Tuple t)
 	uint32_t offset = 0;
 	for (uint32_t i = 0; i < header->length; i++)
 	{
-		uint32_t a;
+		uint64_t a;
 		switch (header->types[i])
 		{
 		case F32:
@@ -102,16 +102,10 @@ void Data::pushback(Tuple t)
 			offset += sizeof(int64_t);
 			break;
 		case STR:
-			std::string * c = new std::string(((Str*)t.elements[i])->x.c_str());
-			a = (uint64_t)c;
-
+			a = (uint64_t)new std::string(((Str*)t.elements[i])->x.c_str());
 			memcpy(&data[insertIndex + offset], (uint8_t*)&a, sizeof(uint64_t));
 			offset += sizeof(uint64_t);
 			break;
-		/*case UNK:
-			data[insertIndex + offset + sizeof(char)] = 1;
-			offset += sizeof(char);
-			break;*/
 		}
 	}
 	insertIndex += datapointsize;
@@ -147,10 +141,6 @@ void Data::print()
 				printf("%s \t", ((std::string*)(*(uint64_t*)&data[i*datapointsize + offset]))->c_str());
 				offset += sizeof(uint64_t);
 				break;
-			/*case UNK:
-				printf("??? \t");
-				offset += sizeof(char);
-				break;*/
 			}
 		}
 		printf(" \n");
