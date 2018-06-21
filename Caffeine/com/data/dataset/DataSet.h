@@ -19,6 +19,12 @@ struct Int32 : Value	{ int x;			Int32(int i)		:x(i) {}	Int32()		:x(std::numeric_
 struct Int64 : Value	{ long x;			Int64(long l)		:x(l) {}	Int64()		:x(std::numeric_limits<long>::max())	{} };
 struct Str : Value		{ std::string x;	Str(std::string s)	:x(s) {}	Str()		:x("-???-")								{} };
 
+
+struct AttributeInfo
+{
+	int is_discrete;
+};
+
 struct Header
 {
 	Header(std::string* n, int* t, uint32_t size);

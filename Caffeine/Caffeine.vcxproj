@@ -19,13 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="com\data\dataset\DataSet.cpp" />
     <ClCompile Include="com\networks\mlp\mlp.cpp" />
-    <ClCompile Include="DataSet.cpp" />
     <ClCompile Include="lstm.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="com\data\dataset\DataSet.h" />
     <ClInclude Include="com\networks\mlp\mlp.h" />
-    <ClInclude Include="DataSet.h" />
     <ClInclude Include="lstm.h" />
   </ItemGroup>
   <ItemGroup>

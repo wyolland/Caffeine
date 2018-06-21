@@ -43,27 +43,33 @@
     <Filter Include="com\AI\machine_learning\reinfocement_learning">
       <UniqueIdentifier>{6085e342-805e-4644-a9ae-ac932ed4461d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TEST">
+      <UniqueIdentifier>{de388954-9711-4b50-b542-22c89717929c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="com\networks\mlp\mlp.cpp">
       <Filter>com\AI\machine_learning\neural_networks\MLP</Filter>
     </ClCompile>
-    <ClCompile Include="DataSet.cpp">
-      <Filter>com\data\dataset</Filter>
-    </ClCompile>
     <ClCompile Include="lstm.cpp">
       <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>
+    </ClCompile>
+    <ClCompile Include="com\data\dataset\DataSet.cpp">
+      <Filter>com\data\dataset</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>TEST</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com\networks\mlp\mlp.h">
       <Filter>com\AI\machine_learning\neural_networks\MLP</Filter>
     </ClInclude>
-    <ClInclude Include="DataSet.h">
-      <Filter>com\data\dataset</Filter>
-    </ClInclude>
     <ClInclude Include="lstm.h">
       <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>
+    </ClInclude>
+    <ClInclude Include="com\data\dataset\DataSet.h">
+      <Filter>com\data\dataset</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
