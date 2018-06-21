@@ -41,6 +41,8 @@ Tuple::~Tuple()
 Data::Data(Header * h, uint64_t size)
 {
 	datapointsize = 0;
+	insertIndex = 0;
+	datapointcount = 0;
 	header = h;
 	for (uint32_t i = 0; i < header->length; i++)
 	{
@@ -59,7 +61,7 @@ Data::Data(Header * h, uint64_t size)
 			datapointsize += sizeof(int64_t);
 			break;
 		case STR:
-			datapointsize += sizeof(uint32_t);
+			datapointsize += sizeof(uint64_t);
 			break;
 		/*case UNK:
 			datapointsize += sizeof(char);
@@ -75,6 +77,8 @@ Data::~Data()
 
 void Data::pushback(Tuple t)
 {
+	//TODO add dynamic size
+
 	uint32_t offset = 0;
 	for (uint32_t i = 0; i < header->length; i++)
 	{
@@ -98,9 +102,11 @@ void Data::pushback(Tuple t)
 			offset += sizeof(int64_t);
 			break;
 		case STR:
-			a = (uint32_t)new std::string(((Str*)t.elements[i])->x.c_str());
-			memcpy(&data[insertIndex + offset], (uint8_t*)&a, sizeof(uint32_t));
-			offset += sizeof(uint32_t);
+			std::string * c = new std::string(((Str*)t.elements[i])->x.c_str());
+			a = (uint64_t)c;
+
+			memcpy(&data[insertIndex + offset], (uint8_t*)&a, sizeof(uint64_t));
+			offset += sizeof(uint64_t);
 			break;
 		/*case UNK:
 			data[insertIndex + offset + sizeof(char)] = 1;
@@ -138,8 +144,8 @@ void Data::print()
 				offset += sizeof(int);
 				break;
 			case STR:
-				printf("%s \t", ((std::string*)(*(uint32_t*)&data[i*datapointsize + offset]))->c_str());
-				offset += sizeof(uint32_t);
+				printf("%s \t", ((std::string*)(*(uint64_t*)&data[i*datapointsize + offset]))->c_str());
+				offset += sizeof(uint64_t);
 				break;
 			/*case UNK:
 				printf("??? \t");

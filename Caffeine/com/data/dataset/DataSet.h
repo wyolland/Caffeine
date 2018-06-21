@@ -23,6 +23,9 @@ struct Str : Value		{ std::string x;	Str(std::string s)	:x(s) {}	Str()		:x("-???
 struct AttributeInfo
 {
 	int is_discrete;
+	double mean;
+	double median;
+	double variance;
 };
 
 struct Header
