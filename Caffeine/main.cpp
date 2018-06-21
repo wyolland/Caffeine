@@ -24,7 +24,7 @@ int main()
 #ifdef DATASET_EXAMPLE
 	Header * h = new Header(new std::string[3]{ "Name","Gewicht","Grösse" }, new int[3]{ STR,F64,F32 }, 3);
 	Tuple * t = new Tuple(3);
-	Data * d = new Data(h, 100000);
+	Data * d = new Data(h, 1);
 
 
 
@@ -59,7 +59,10 @@ int main()
 
 
 #ifdef MLP_EXAMPLE
-	printf("MLP");
+	printf("MLP training XOR...\n");
+	Header * h = new Header(new std::string[3]{ "A","B","Label" }, new int[3]{ I32,I32,STR }, 4);
+	Tuple * t = new Tuple(3);
+
 #endif
 
 	enter_to_return((clock() - exec_time) / (CLOCKS_PER_SEC / 1000.0));

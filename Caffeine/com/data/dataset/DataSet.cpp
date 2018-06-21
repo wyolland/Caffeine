@@ -38,12 +38,13 @@ Tuple::~Tuple()
 
 
 #pragma region Data
-Data::Data(Header * h, uint64_t size)
+Data::Data(Header * h, uint64_t s)
 {
 	datapointsize = 0;
 	insertIndex = 0;
 	datapointcount = 0;
 	header = h;
+	size = s;
 	for (uint32_t i = 0; i < header->length; i++)
 	{
 		switch (header->types[i])
@@ -78,6 +79,11 @@ Data::~Data()
 void Data::pushback(Tuple t)
 {
 	//TODO add dynamic size
+	if (datapointcount>=size)
+	{
+		data = (uint8_t*)realloc(&data[0], size*datapointsize * 2);
+	}
+
 
 	uint32_t offset = 0;
 	for (uint32_t i = 0; i < header->length; i++)

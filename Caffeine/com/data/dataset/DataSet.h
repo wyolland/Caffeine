@@ -54,7 +54,8 @@ struct Data
 	uint32_t datapointsize;
 	uint32_t insertIndex;
 	uint32_t datapointcount;
-	Data(Header * h, uint64_t size);
+	size_t size;
+	Data(Header * h, uint64_t s);
 	~Data();
 
 	//The values of the Tuple are copied so the tuple can be reassigned and reused
