@@ -7,14 +7,8 @@
     <Filter Include="com\data">
       <UniqueIdentifier>{66cc3009-e6b5-40ad-a1f3-dddf3efb46e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="com\networks">
-      <UniqueIdentifier>{bf40e5b4-df95-4508-ac76-a54100917b19}</UniqueIdentifier>
-    </Filter>
     <Filter Include="com\nodes">
       <UniqueIdentifier>{bfa4389c-3954-41f9-91e2-c7220d0052ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="com\networks\MLP">
-      <UniqueIdentifier>{f3aaf839-f9ef-4653-96e3-78094caaec83}</UniqueIdentifier>
     </Filter>
     <Filter Include="com\data\dataset">
       <UniqueIdentifier>{2f3b9723-5d18-436f-9ef4-8036db12ed60}</UniqueIdentifier>
@@ -22,45 +16,54 @@
     <Filter Include="com\parser">
       <UniqueIdentifier>{3c77b753-61a6-4304-8694-8d4c2f526fbb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="com\networks\LSTM">
+    <Filter Include="com\AI">
+      <UniqueIdentifier>{bf40e5b4-df95-4508-ac76-a54100917b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="com\AI\machine_learning">
+      <UniqueIdentifier>{f9b9183e-3104-444a-b943-581cbb828083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="com\AI\genetic">
+      <UniqueIdentifier>{f884c605-afa4-48af-88cf-b6802c20aadd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="com\AI\fuzzy">
+      <UniqueIdentifier>{fb371d45-91a4-4353-951c-0e75433d376f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="com\AI\probabilistic">
+      <UniqueIdentifier>{a9da3fe0-dc54-4e40-af71-5051c159fa2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="com\AI\machine_learning\neural_networks">
+      <UniqueIdentifier>{65801ff3-34df-4d7b-9d0b-cf77f3337bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="com\AI\machine_learning\neural_networks\LSTM">
       <UniqueIdentifier>{8bdc1455-361c-45d8-a74a-b584b53b0e9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="com\algorithms">
-      <UniqueIdentifier>{4569e096-c890-4a3b-a627-5bf9192d8e1c}</UniqueIdentifier>
+    <Filter Include="com\AI\machine_learning\neural_networks\MLP">
+      <UniqueIdentifier>{f3aaf839-f9ef-4653-96e3-78094caaec83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="com\algorithms\descision_trees">
-      <UniqueIdentifier>{04af1f22-239a-4335-87e8-4f61649f65c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="com\algorithms\clustering">
-      <UniqueIdentifier>{f4b8ce63-fe7c-4c41-afa1-472250367d87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="com\algorithms\genetic">
-      <UniqueIdentifier>{458b2601-3614-48d1-87dd-26205779308d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="com\networks\SOM">
-      <UniqueIdentifier>{fe82deb8-4d73-404a-b107-21a3586035ee}</UniqueIdentifier>
+    <Filter Include="com\AI\machine_learning\reinfocement_learning">
+      <UniqueIdentifier>{6085e342-805e-4644-a9ae-ac932ed4461d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="com\networks\mlp\mlp.cpp">
-      <Filter>com\networks\MLP</Filter>
+      <Filter>com\AI\machine_learning\neural_networks\MLP</Filter>
     </ClCompile>
     <ClCompile Include="DataSet.cpp">
       <Filter>com\data\dataset</Filter>
     </ClCompile>
     <ClCompile Include="lstm.cpp">
-      <Filter>com\networks\LSTM</Filter>
+      <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com\networks\mlp\mlp.h">
-      <Filter>com\networks\MLP</Filter>
+      <Filter>com\AI\machine_learning\neural_networks\MLP</Filter>
     </ClInclude>
     <ClInclude Include="DataSet.h">
       <Filter>com\data\dataset</Filter>
     </ClInclude>
     <ClInclude Include="lstm.h">
-      <Filter>com\networks\LSTM</Filter>
+      <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,9 @@
 #include "mlp.h"
 
-PerzeptronLayerHeavy::PerzeptronLayerHeavy(LayerArgument argument)
+AI::ML::NN::MLP::PerzeptronLayerHeavy::PerzeptronLayerHeavy(LayerArgument argument)
 {
-	arg = argument;
+	//TODO Maybe error with const in LayerArgument?
+	memcpy(&arg, &argument, sizeof(argument));
 	std::random_device r;
 	std::mt19937 e2(r());
 
@@ -54,11 +55,11 @@ PerzeptronLayerHeavy::PerzeptronLayerHeavy(LayerArgument argument)
 	
 }
 
-PerzeptronLayerHeavy::~PerzeptronLayerHeavy()
+AI::ML::NN::MLP::PerzeptronLayerHeavy::~PerzeptronLayerHeavy()
 {
 }
 
-inline void PerzeptronLayerHeavy::calculate()
+inline void AI::ML::NN::MLP::PerzeptronLayerHeavy::calculate()
 {
 	for (int i = 0; i < arg.OUTPUTS; i++)
 	{
@@ -135,7 +136,7 @@ inline void PerzeptronLayerHeavy::calculate()
 	}
 }
 
-inline float PerzeptronLayerHeavy::backpropagate(float * expected)
+inline float AI::ML::NN::MLP::PerzeptronLayerHeavy::backpropagate(float * expected)
 {
 	float error_sum = 0.0f;
 	for (int i = 0; i < arg.OUTPUTS; i++)
@@ -237,7 +238,7 @@ inline float PerzeptronLayerHeavy::backpropagate(float * expected)
 	return error_sum/arg.OUTPUTS;
 }
 
-inline void PerzeptronLayerHeavy::backpropagate()
+inline void AI::ML::NN::MLP::PerzeptronLayerHeavy::backpropagate()
 {
 	for (int i = 0; i < arg.OUTPUTS; i++)
 	{
@@ -309,7 +310,7 @@ inline void PerzeptronLayerHeavy::backpropagate()
 	}
 }
 
-inline void PerzeptronLayerHeavy::update_weights()
+inline void AI::ML::NN::MLP::PerzeptronLayerHeavy::update_weights()
 {
 	for (int i = 0; i < arg.OUTPUTS; i++)
 	{
@@ -329,7 +330,7 @@ inline void PerzeptronLayerHeavy::update_weights()
 }
 
 
-MultilayerPerzeptron::MultilayerPerzeptron(int layer_count, LayerArgument* arguments)
+AI::ML::NN::MLP::MultilayerPerzeptron::MultilayerPerzeptron(int layer_count, LayerArgument* arguments)
 {
 	layers = new PerzeptronLayer*[layer_count - 1];
 	layercount = layer_count - 1;
@@ -356,11 +357,11 @@ MultilayerPerzeptron::MultilayerPerzeptron(int layer_count, LayerArgument* argum
 	}
 }
 
-MultilayerPerzeptron::~MultilayerPerzeptron()
+AI::ML::NN::MLP::MultilayerPerzeptron::~MultilayerPerzeptron()
 {
 }
 
-inline float * MultilayerPerzeptron::feedForward(float * input)
+inline float * AI::ML::NN::MLP::MultilayerPerzeptron::feedForward(float * input)
 {
 	layers[0]->_inputs = input;
 	for (int i = 0; i < layercount; i++)
@@ -368,7 +369,7 @@ inline float * MultilayerPerzeptron::feedForward(float * input)
 	return layers[layercount-1]->_outputs;
 }
 
-float MultilayerPerzeptron::feedBackward(float * expected)
+float AI::ML::NN::MLP::MultilayerPerzeptron::feedBackward(float * expected)
 {
 	error = layers[layercount - 1]->backpropagate(expected);
 	for (int i = layercount - 2; i >= 0; i--)
@@ -378,7 +379,7 @@ float MultilayerPerzeptron::feedBackward(float * expected)
 	return error;
 }
 
-bool MultilayerPerzeptron::save(std::string filename)
+bool AI::ML::NN::MLP::MultilayerPerzeptron::save(std::string filename)
 {
 	std::ofstream o_file(filename.c_str(), std::ofstream::binary);
 	
