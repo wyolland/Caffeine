@@ -51,8 +51,6 @@ int main()
 		d->pushback(*t);
 	}
 
-
-
 	d->print();
 #endif
 
