@@ -1,8 +1,11 @@
 #include "mlp.h"
 
+AI::ML::NN::MLP::PerzeptronLayer::PerzeptronLayer()
+{
+}
+
 AI::ML::NN::MLP::PerzeptronLayerHeavy::PerzeptronLayerHeavy(LayerArgument argument)
 {
-	//TODO Maybe error with const in LayerArgument?
 	memcpy(&arg, &argument, sizeof(argument));
 	std::random_device r;
 	std::mt19937 e2(r());
@@ -16,43 +19,41 @@ AI::ML::NN::MLP::PerzeptronLayerHeavy::PerzeptronLayerHeavy(LayerArgument argume
 
 	switch (arg.distribution)
 	{
-	case ProbabilityDistributionNone:
-	{
-		for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
-			_weights[i] = 1.0f;
-		break;
+		case ProbabilityDistributionNone:
+		{
+			for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
+				_weights[i] = 0.0f;
+			break;
+		}
+		case ProbabilityDistributionUniform:
+		{
+			std::uniform_real_distribution<float> distUni(arg.lower, arg.upper);
+			for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
+				_weights[i] = distUni(e2);
+			break;
+		}
+		case ProbabilityDistributionNormal:
+		{
+			std::normal_distribution<float> distNorm((arg.lower + arg.upper)*0.5f, sqrt(0.5f*(powf(arg.lower - (arg.lower + arg.upper)*0.5f, 2) + 0.5f*powf(arg.upper - (arg.lower + arg.upper)*0.5f, 2))));
+			for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
+				_weights[i] = distNorm(e2);
+			break;
+		}
+		case ProbabilityDistributionBoolean:
+		{
+			std::extreme_value_distribution<float> distBool(arg.lower, arg.upper);
+			for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
+				_weights[i] = distBool(e2);
+			break;
+		}
+		case ProbabilityDistributionPoisson:
+		{
+			std::poisson_distribution<int> distPoiss((arg.lower + arg.upper)*0.5f);
+			for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
+				_weights[i] = distPoiss(e2);
+			break;
+		}
 	}
-	case ProbabilityDistributionUniform:
-	{
-		std::uniform_real_distribution<float> distUni(arg.lower, arg.upper);
-		for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
-			_weights[i] = distUni(e2);
-		break;
-	}
-	case ProbabilityDistributionNormal:
-	{
-		std::normal_distribution<float> distNorm((arg.lower + arg.upper)*0.5f, sqrt(0.5f*(powf(arg.lower - (arg.lower + arg.upper)*0.5f, 2) + 0.5f*powf(arg.upper - (arg.lower + arg.upper)*0.5f, 2))));
-		for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
-			_weights[i] = distNorm(e2);
-		break;
-	}
-	case ProbabilityDistributionBoolean:
-	{
-		std::extreme_value_distribution<float> distBool(arg.lower, arg.upper);
-		for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
-			_weights[i] = distBool(e2);
-		break;
-	}
-	case ProbabilityDistributionPoisson:
-	{
-		std::poisson_distribution<int> distPoiss((arg.lower + arg.upper)*0.5f);
-		for (int i = 0; i < (arg.OUTPUTS*arg.INPUTS + arg.OUTPUTS); i++)
-			_weights[i] = distPoiss(e2);
-		break;
-	}
-	}
-
-	
 }
 
 AI::ML::NN::MLP::PerzeptronLayerHeavy::~PerzeptronLayerHeavy()

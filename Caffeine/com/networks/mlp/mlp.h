@@ -120,11 +120,24 @@ namespace AI
 					int distribution;
 					float lower;
 					float upper;
+					LayerArgument(uint32_t outputs, uint32_t inputs, int activation_function, int error_function, int optimizer) :
+						OUTPUTS(outputs), INPUTS(inputs), FUNCTION_ACTIVATION(activation_function), FUNCTION_ERROR(error_function), OPTIMIZER(optimizer)
+					{
+							
+					}
+					LayerArgument() :
+						OUTPUTS(1), INPUTS(2), FUNCTION_ACTIVATION(ActivationFunctionSigmoid), FUNCTION_ERROR(ErrorFunctionL2), OPTIMIZER(OptimizerGD)
+					{
+
+					}
+
 				};
 
 				class PerzeptronLayer
 				{
 				public:
+					PerzeptronLayer();
+
 					virtual void calculate() = 0;
 					virtual float backpropagate(float*) = 0;
 					virtual void backpropagate() = 0;
@@ -148,7 +161,8 @@ namespace AI
 				class PerzeptronLayerHeavy : public PerzeptronLayer
 				{
 				public:
-					PerzeptronLayerHeavy(LayerArgument);
+					explicit PerzeptronLayerHeavy(LayerArgument);
+					PerzeptronLayerHeavy() = default;
 					~PerzeptronLayerHeavy();
 
 					inline void calculate();
@@ -171,9 +185,9 @@ namespace AI
 					MultilayerPerzeptron(int,LayerArgument*);
 					~MultilayerPerzeptron();
 
-					virtual float* feedForward(float*);
-					virtual float feedBackward(float*);
-					virtual bool save(std::string filename);
+					float* feedForward(float*);
+					float feedBackward(float*);
+					bool save(std::string filename);
 
 					PerzeptronLayer ** layers;
 					int layercount;
