@@ -1,4 +1,5 @@
 #include "DataSet.h"
+#include <iostream>
 
 #pragma region Header
 
@@ -76,15 +77,47 @@ Data::~Data()
 {
 }
 
-void Data::operator+(const Tuple & t)
+//Return new dataset wich contains the old set and the new tuple
+Data& Data::operator+(const Tuple & t)
+{
+	return Data(nullptr, 0);
+}
+
+//Add the tuple to the current dataset
+void Data::operator+=(const Tuple & t)
 {
 	pushback(t);
 }
 
+//Create a new dataset from two existing ones
+Data & Data::operator+(const Data & d)
+{
+	return Data(nullptr, 0);
+}
+
+//Add a dataset to an existing one
+void Data::operator+=(const Data & d)
+{
+}
+
+//Address a specific row (datapoint, tuple) in the dataset
 Tuple& Data::operator[](uint64_t i)
 {
-
+	return Tuple(3);
 }
+
+std::ostream & operator<<(std::ostream & o, Data & d)
+{
+	o << "Printing DataSet..." << std::endl 
+		<< "Datapoints: " << d.datapointcount << std::endl
+		<< "Datapointsize: "<< d.datapointsize << " Bytes" << std::endl
+		<< "--------------------------------" << std::endl;
+	d.print();
+
+	o << "-------------EOD----------------" << std::endl;
+	return o;
+}
+
 
 void Data::pushback(Tuple t)
 {
@@ -163,3 +196,4 @@ void Data::print()
 	}
 }
 #pragma endregion
+

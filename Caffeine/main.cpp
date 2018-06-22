@@ -24,10 +24,7 @@ int main()
 #ifdef DATASET_EXAMPLE
 	Header * h = new Header(new std::string[3]{ "Name","Gewicht","Grösse" }, new int[3]{ STR,F64,F32 }, 3);
 	Tuple * t = new Tuple(3);
-	Data * d = new Data(h, 1);
-
-
-	d->operator+ *t;
+	Data d(h, 100000);
 
 
 	Value * n = new Str("Leo");
@@ -40,7 +37,7 @@ int main()
 	
 
 
-	d->pushback(*t);
+	d+=(*t);
 
 	for (int i = 1; i < 10000; i++)
 	{
@@ -48,10 +45,10 @@ int main()
 		((Float64*)w)->x = 82.5 + 1.0/i;
 		((Float32*)s)->x = 172.1f + i/100.0;
 
-		d->pushback(*t);
+		d+=(*t);
 	}
 
-	d->print();
+	std::cout << d;
 #endif
 
 
