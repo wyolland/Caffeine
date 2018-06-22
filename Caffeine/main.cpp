@@ -27,7 +27,7 @@ int main()
 	Data * d = new Data(h, 1);
 
 
-
+	d->operator+ *t;
 
 
 	Value * n = new Str("Leo");

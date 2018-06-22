@@ -76,6 +76,16 @@ Data::~Data()
 {
 }
 
+void Data::operator+(const Tuple & t)
+{
+	pushback(t);
+}
+
+Tuple& Data::operator[](uint64_t i)
+{
+
+}
+
 void Data::pushback(Tuple t)
 {
 	//TODO add dynamic size

@@ -58,6 +58,10 @@ struct Data
 	Data(Header * h, uint64_t s);
 	~Data();
 
+	void operator+(const Tuple&);
+	Data& operator+(const Data&);
+	Tuple& operator[](uint64_t);
+
 	//The values of the Tuple are copied so the tuple can be reassigned and reused
 	void pushback(Tuple t);
 	void print();
