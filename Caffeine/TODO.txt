@@ -4,6 +4,8 @@ DATA:
 	-Correlation
 	-StatisticalTests
 	-Reduction
+		-Feature selection univariate
+		-ChiMerge
 	-Transformation
 	-Discretisation
 
