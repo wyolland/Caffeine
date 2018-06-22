@@ -29,3 +29,7 @@ Genetic Algorithm
 FuzzyRepresentation
 
 Ensemble learning with MPI and/or multi-GPU
+
+RawDataSet may hold strings, but the real dataset may only hold numerical data. Use map<string, int> to create linkage
+
+Correlation between two attributes L03S23 for details
