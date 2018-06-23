@@ -60,6 +60,9 @@
     <ClCompile Include="main.cpp">
       <Filter>TEST</Filter>
     </ClCompile>
+    <ClCompile Include="DataSet_2.cpp">
+      <Filter>com\data\dataset</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="com\networks\mlp\mlp.h">
@@ -69,6 +72,9 @@
       <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>
     </ClInclude>
     <ClInclude Include="com\data\dataset\DataSet.h">
+      <Filter>com\data\dataset</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSet_2.h">
       <Filter>com\data\dataset</Filter>
     </ClInclude>
   </ItemGroup>

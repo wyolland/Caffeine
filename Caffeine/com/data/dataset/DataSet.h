@@ -45,6 +45,8 @@ struct Tuple
 	Value ** elements;
 
 	void set(uint32_t i, Value * v);
+	template<typename T> void get(uint32_t i, T * v);
+
 };
 
 struct Data

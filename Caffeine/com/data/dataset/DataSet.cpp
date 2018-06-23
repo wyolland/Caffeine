@@ -65,9 +65,6 @@ Data::Data(Header * h, uint64_t s)
 		case STR:
 			datapointsize += sizeof(uint64_t);
 			break;
-		/*case UNK:
-			datapointsize += sizeof(char);
-			break;*/
 		}
 	}
 	data = (uint8_t*)malloc(datapointsize*size);
@@ -113,7 +110,7 @@ std::ostream & operator<<(std::ostream & o, Data & d)
 		<< "Datapointsize: "<< d.datapointsize << " Bytes" << std::endl
 		<< "--------------------------------" << std::endl;
 	d.print();
-
+	//TODO do not print whole data.
 	o << "-------------EOD----------------" << std::endl;
 	return o;
 }
