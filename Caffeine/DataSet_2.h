@@ -21,7 +21,12 @@ struct Str : Value		{ std::string x;	Str(std::string s) :x(s){ t = STR; }	Str() 
 
 struct Header
 {
+	size_t n;
+	uint8_t* t;
+	Header(std::string*, int*, size_t);
+	~Header();
 
+	
 };
 
 struct DataPoint
@@ -29,15 +34,15 @@ struct DataPoint
 	size_t types;
 	uint32_t length;
 	Value** elements;
-	DataPoint(uint32_t n);
+	DataPoint(uint32_t);
 
-	Value* operator[](uint32_t);
-	
+	Value& operator[](uint32_t);
 };
 
 struct DataSet
 {
 	Header * head;
+	DataPoint * point;
 	uint8_t * data;
 	size_t datapointsize, datapointcount, insertindex, capacity;
 
