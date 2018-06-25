@@ -31,9 +31,11 @@ int main()
 	{
 		D[i][0] = i;
 		D[i][1] = 0.1*i;
-		D[i][2] = "A" + std::to_string(i%3);
+		D[i][2] = "A";
+		//D.commit();
+		//std::cout << D[0] << std::endl;
 	}
-	//Takes about 4.5 sec to assign 300000 (100k*3)values
+	//Takes about 2.5 sec to assign 300000 (100k*3)values
 
 	//CODE GOES HERE
 #ifdef DATASET_EXAMPLE

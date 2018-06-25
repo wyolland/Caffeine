@@ -75,7 +75,6 @@ std::ostream & operator<<(std::ostream & o, DataPoint & p)
 		o << p[i] << "\t";
 	}
 	return o;
-	// TODO: hier Rückgabeanweisung eingeben
 }
 
 
@@ -173,16 +172,22 @@ bool DataSet::operator+=(const DataSet &)
 DataPoint& DataSet::operator[](size_t n)
 {
 	size_t offset = 0;
-	insertindex = datapointsize*n;
-	for (size_t i = 0; i < head->n; i++)
+	
+	//only if the index changes reassign the values
+	if (insertindex != datapointsize*n)
 	{
-		switch (head->types[i])
+		//commit();
+		insertindex = datapointsize*n;
+		for (size_t i = 0; i < head->n; i++)
 		{
-		case F32: (*point)[i] = *(float*)&data[n*datapointsize + offset];						offset += sizeof(float);	break;
-		case F64: (*point)[i] = *(double*)&data[n*datapointsize + offset];						offset += sizeof(double);	break;
-		case I32: (*point)[i] = *(int*)&data[n*datapointsize + offset];							offset += sizeof(int);		break;
-		case I64: (*point)[i] = *(int64_t*)&data[n*datapointsize + offset];						offset += sizeof(int64_t);	break;
-		case STR: (*point)[i] = *((std::string*)(*(uint64_t*)&data[n*datapointsize + offset]));	offset += sizeof(uint64_t); break;
+			switch (head->types[i])
+			{
+			case F32: (*point)[i] = *(float*)&data[n*datapointsize + offset];						offset += sizeof(float);	break;
+			case F64: (*point)[i] = *(double*)&data[n*datapointsize + offset];						offset += sizeof(double);	break;
+			case I32: (*point)[i] = *(int*)&data[n*datapointsize + offset];							offset += sizeof(int);		break;
+			case I64: (*point)[i] = *(int64_t*)&data[n*datapointsize + offset];						offset += sizeof(int64_t);	break;
+			case STR: (*point)[i] = *((std::string*)(*(uint64_t*)&data[n*datapointsize + offset])); offset += sizeof(uint64_t); break;
+			}
 		}
 	}
 	return *point;
