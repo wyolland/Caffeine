@@ -78,6 +78,9 @@ std::ostream & operator<<(std::ostream & o, DataPoint & p)
 }
 
 
+
+
+
 DataSet::DataSet(Header * head, uint32_t cap)
 {
 	//Is pointer so operator[] wich accesses point will not work
@@ -191,4 +194,20 @@ DataPoint& DataSet::operator[](size_t n)
 		}
 	}
 	return *point;
+}
+
+std::ostream & operator<<(std::ostream & o, DataSet & p)
+{
+	o << "Printing " << p.name << std::endl
+		<< "Number of Datapoints: " << p.datapointcount << std::endl
+		//Maybe eyport the following to header and overload stream operator
+		<< "Number of attributes: " << p.point->length << std::endl
+		<< "----------------------------------------" << std::endl;
+		for (size_t i = 0; i < p.head->n; i++)
+			o << p.head->names[i] << "\t";
+		o << "\n________________________________________\n" << std::endl
+			<< p[0] << "\n" << p[1] << "\n" << "...\n" << p[p.datapointcount] << std::endl
+			<< "----------------------------------------" << std::endl;
+
+	return o;
 }

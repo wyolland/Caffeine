@@ -24,17 +24,16 @@ int main()
 
 
 	Header* h = new Header(new std::string[3]{ "Index","Value","Label" }, new uint8_t[3]{ I32,F64,STR }, 3);
-	DataSet D(h,100000);
+	DataSet D(h,10);
 	
 	
-	for (int i = 0; i < 100000; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		D[i][0] = i;
 		D[i][1] = 0.1*i;
-		D[i][2] = "A";
-		//D.commit();
-		//std::cout << D[0] << std::endl;
+		D[i][2] = i%2?"A":"B";
 	}
+	std::cout << D << std::endl;
 	//Takes about 2.5 sec to assign 300000 (100k*3)values
 
 	//CODE GOES HERE

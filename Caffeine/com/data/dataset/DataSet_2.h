@@ -56,6 +56,7 @@ struct DataSet
 	Header * head;
 	DataPoint * point;
 	uint8_t * data;
+	std::string name = "DataSet";
 	size_t datapointsize, datapointcount, insertindex, capacity;
 
 	DataSet(Header * head, uint32_t cap = 1000);
@@ -70,4 +71,5 @@ struct DataSet
 	bool operator+=(const DataSet&);
 
 	DataPoint& operator[](size_t);
+	friend std::ostream& operator<<(std::ostream& o, DataSet& p);
 };
