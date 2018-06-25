@@ -3,10 +3,10 @@
 #include <limits>
 #include <ctime>
 
-#include "com\data\dataset\DataSet.h"
+#include "DataSet_2.h"
 
 //Define
-#define DATASET_EXAMPLE
+//#define DATASET_EXAMPLE
 
 
 
@@ -18,6 +18,13 @@ clock_t exec_time;
 int main()
 {
 	exec_time = clock();
+
+	Value * v = new Str("ABC");
+	printf("Value: %s\n", ((Str*)v)->x);
+	*v = "ABC.XYZ";
+	printf("Value: %s\n", ((Str*)v)->x);
+
+
 
 
 	//CODE GOES HERE

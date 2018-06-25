@@ -12,7 +12,15 @@ enum TypeName
 	STR
 };
 
-struct Value { uint8_t t; Value() {} };
+struct Value { 
+	uint8_t t; 
+	Value() {} 
+	void operator=(float v); 
+	void operator=(double v);
+	void operator=(int v); 
+	void operator=(int64_t v); 
+	void operator=(std::string v);
+};
 struct Float32 : Value	{ float x;			Float32(float f) :x(f)	{ t = F32; }	Float32() :x(std::numeric_limits<float>::max())		{ t = F32; }};
 struct Float64 : Value	{ double x;			Float64(double d) :x(d) { t = F64; }	Float64() :x(std::numeric_limits<double>::max())	{ t = F64; }};
 struct Int32 : Value	{ int x;			Int32(int i) :x(i)		{ t = I32; }	Int32() :x(std::numeric_limits<int>::max())			{ t = I32; }};

@@ -1,5 +1,38 @@
 #include "DataSet_2.h"
 
+
+void Value::operator=(float v)
+{
+	if (t == F32) { ((Float32*)this)->x = v; } 
+	else { throw - 1; }
+}
+
+void Value::operator=(double v)
+{
+	if (t == F64) { ((Float64*)this)->x = v; }
+	else { throw - 1; }
+}
+
+void Value::operator=(int v)
+{
+	if (t == I32) { ((Int32*)this)->x = v; } 
+	else { throw - 1; }
+}
+
+void Value::operator=(int64_t v)
+{
+	if (t == I64) { ((Int64*)this)->x = v; } 
+	else { throw - 1; }
+}
+
+void Value::operator=(std::string v)
+{
+	if (t == STR) { ((Str*)this)->x = v; } 
+	else { throw - 1; }
+}
+
+
+
 DataPoint::DataPoint(uint32_t n)
 {
 	elements = (Value**)malloc(n * sizeof(Value*));
@@ -34,12 +67,13 @@ DataPoint& DataSet::operator[](size_t n)
 	{
 		switch (head->t[i])
 		{
-		case F32: ((Float32*)point->elements[i])->x		= *(float*)&data[n*datapointsize + offset];										offset += sizeof(float);	break;
-		case F64: ((Float64*)point->elements[i])->x		= *(double*)&data[n*datapointsize + offset];									offset += sizeof(double);	break;
-		case I32: ((Int32*)point->elements[i])->x		= *(int*)&data[n*datapointsize + offset];										offset += sizeof(int);		break;
-		case I64: ((Int64*)point->elements[i])->x		= *(int64_t*)&data[n*datapointsize + offset];									offset += sizeof(int64_t);	break;
-		case STR: ((Str*)point->elements[i])->x			= ((std::string*)(*(uint64_t*)&data[n*datapointsize + offset]))->c_str();		offset += sizeof(uint64_t); break;
+		case F32: *(point->elements[i])					= *(float*)&data[n*datapointsize + offset];										offset += sizeof(float);	break;
+		case F64: *(point->elements[i])					= *(double*)&data[n*datapointsize + offset];									offset += sizeof(double);	break;
+		case I32: *(point->elements[i])					= *(int*)&data[n*datapointsize + offset];										offset += sizeof(int);		break;
+		case I64: *(point->elements[i])					= *(int64_t*)&data[n*datapointsize + offset];									offset += sizeof(int64_t);	break;
+		case STR: *(point->elements[i])					= ((std::string*)(*(uint64_t*)&data[n*datapointsize + offset]))->c_str();		offset += sizeof(uint64_t); break;
 		}
 	}
+	(*(Float32*)point->elements[0]) = 1.0f;
 	return *point;
 }
