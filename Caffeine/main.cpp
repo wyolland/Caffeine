@@ -20,9 +20,9 @@ int main()
 	exec_time = clock();
 
 	Value * v = new Str("ABC");
-	printf("Value: %s\n", ((Str*)v)->x);
+	std::cout << "Value: " << ((Str*)v)->x << std::endl;
 	*v = "ABC.XYZ";
-	printf("Value: %s\n", ((Str*)v)->x);
+	std::cout << "Value: " << ((Str*)v)->x << std::endl;
 
 
 
