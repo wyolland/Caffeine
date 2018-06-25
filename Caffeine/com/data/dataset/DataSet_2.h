@@ -59,6 +59,8 @@ struct DataSet
 	std::string name = "DataSet";
 	size_t datapointsize, datapointcount, insertindex, capacity;
 
+	//TODO datapointcount adapting
+
 	DataSet(Header * head, uint32_t cap = 1000);
 	~DataSet();
 
