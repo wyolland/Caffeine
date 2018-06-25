@@ -64,6 +64,7 @@ DataPoint::DataPoint(uint32_t n, void* d)
 
 Value& DataPoint::operator[](uint32_t i)
 {	
+	((DataSet*)parent)->commit(); //TODO this is messed up shit... Too much memory accessing. Make it light
 	return *elements[i];
 }
 

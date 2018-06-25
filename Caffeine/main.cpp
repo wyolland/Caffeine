@@ -19,16 +19,18 @@ clock_t exec_time;
 int main()
 {
 	exec_time = clock();
-	Header* h = new Header(new std::string[2]{ "Index","Value" }, new uint8_t[2]{ I32,F64 }, 2);
+	Header* h = new Header(new std::string[3]{ "Index","Value","Label" }, new uint8_t[3]{ I32,F64,STR }, 3);
 	DataSet D(h);
 	
 	
-	D[0][0] = 1; //TODO ineger not working, double working very fine
-	D[0][1] = 0.1;
+	for (int i = 0; i < 10; i++)
+	{
+		D[i][0] = i;
+		D[i][1] = 0.1*i;
+		D[i][2] = "A" + std::to_string(i%3);
+		std::cout << D[i] << std::endl;
+	}
 
-	D.commit();
-
-	std::cout << D[0] << std::endl;
 
 	//CODE GOES HERE
 #ifdef DATASET_EXAMPLE
