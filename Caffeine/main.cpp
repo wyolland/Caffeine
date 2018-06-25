@@ -4,7 +4,7 @@
 #include <ctime>
 #include <cmath>
 
-#include "DataSet_2.h"
+#include "com\data\dataset\DataSet_2.h"
 
 //Define
 //#define DATASET_EXAMPLE
@@ -19,18 +19,21 @@ clock_t exec_time;
 int main()
 {
 	exec_time = clock();
+
+
+
+
 	Header* h = new Header(new std::string[3]{ "Index","Value","Label" }, new uint8_t[3]{ I32,F64,STR }, 3);
-	DataSet D(h);
+	DataSet D(h,100000);
 	
 	
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 100000; i++)
 	{
 		D[i][0] = i;
 		D[i][1] = 0.1*i;
 		D[i][2] = "A" + std::to_string(i%3);
-		std::cout << D[i] << std::endl;
 	}
-
+	//Takes about 4.5 sec to assign 300000 (100k*3)values
 
 	//CODE GOES HERE
 #ifdef DATASET_EXAMPLE
