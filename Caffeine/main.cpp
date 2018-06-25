@@ -2,6 +2,7 @@
 #include <iostream>
 #include <limits>
 #include <ctime>
+#include <cmath>
 
 #include "DataSet_2.h"
 
@@ -18,14 +19,16 @@ clock_t exec_time;
 int main()
 {
 	exec_time = clock();
+	Header* h = new Header(new std::string[2]{ "Index","Value" }, new uint8_t[2]{ I32,F64 }, 2);
+	DataSet D(h);
+	
+	
+	D[0][0] = 1; //TODO ineger not working, double working very fine
+	D[0][1] = 0.1;
 
-	Value * v = new Str("ABC");
-	std::cout << "Value: " << ((Str*)v)->x << std::endl;
-	*v = "ABC.XYZ";
-	std::cout << "Value: " << ((Str*)v)->x << std::endl;
+	D.commit();
 
-
-
+	std::cout << D[0] << std::endl;
 
 	//CODE GOES HERE
 #ifdef DATASET_EXAMPLE
