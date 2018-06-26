@@ -66,6 +66,9 @@ struct DataSet
 
 	void commit();
 
+	//maybe stuff like that. no nice
+	template<typename T> void add(size_t, size_t, T);
+
 	DataSet& operator+(const DataPoint&);
 	bool operator+=(const DataPoint&);
 
