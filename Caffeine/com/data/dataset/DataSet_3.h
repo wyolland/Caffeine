@@ -12,14 +12,15 @@ enum TypeName
 	STR
 };
 
-struct Value { 
-	uint8_t t; 
-	Value() {} 
-	void operator=(float v); 
-	void operator=(double v);
-	void operator=(int v); 
-	void operator=(int64_t v); 
-	void operator=(std::string v);
+struct Value {
+	uint8_t t;
+	uint8_t * address;
+	Value() {}
+	void operator=(float);
+	void operator=(double);
+	void operator=(int);
+	void operator=(int64_t);
+	void operator=(std::string);
 
 	operator float();
 	operator double();
@@ -29,11 +30,13 @@ struct Value {
 
 	friend std::ostream& operator<<(std::ostream& o, Value& v);
 };
-struct Float32 : Value	{ float x;			Float32(float f) :x(f)	{ t = F32; }	Float32() :x(std::numeric_limits<float>::max())		{ t = F32; }};
-struct Float64 : Value	{ double x;			Float64(double d) :x(d) { t = F64; }	Float64() :x(std::numeric_limits<double>::max())	{ t = F64; }};
-struct Int32 : Value	{ int x;			Int32(int i) :x(i)		{ t = I32; }	Int32() :x(std::numeric_limits<int>::max())			{ t = I32; }};
-struct Int64 : Value	{ long long x;		Int64(long long l):x(l)	{ t = I64; }	Int64() :x(std::numeric_limits<long>::max())		{ t = I64; }};
-struct Str : Value		{ std::string x;	Str(std::string s) :x(s){ t = STR; }	Str() :x("-???-")									{ t = STR; }};
+struct Float32 : Value { float x;			Float32(float f) :x(f) { t = F32; }	Float32() :x(std::numeric_limits<float>::max()) { t = F32; } };
+struct Float64 : Value { double x;			Float64(double d) :x(d) { t = F64; }	Float64() :x(std::numeric_limits<double>::max()) { t = F64; } };
+struct Int32 : Value { int x;			Int32(int i) :x(i) { t = I32; }	Int32() :x(std::numeric_limits<int>::max()) { t = I32; } };
+struct Int64 : Value { long long x;		Int64(long long l) :x(l) { t = I64; }	Int64() :x(std::numeric_limits<long>::max()) { t = I64; } };
+struct Str : Value { std::string x;	Str(std::string s) :x(s) { t = STR; }	Str() :x("-???-") { t = STR; } };
+
+
 
 struct Header
 {
@@ -72,9 +75,6 @@ struct DataSet
 	~DataSet();
 
 	void commit();
-
-	//maybe stuff like that. no nice
-	template<typename T> void add(size_t, size_t, T);
 
 	DataSet& operator+(const DataPoint&);
 	bool operator+=(const DataPoint&);

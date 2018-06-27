@@ -33,7 +33,10 @@ int main()
 		D[i][1] = 0.1*i;
 		D[i][2] = i%2?"A":"B";
 	}
-	std::cout << D << std::endl;
+
+	//adapt read val
+	int i = D[2][0];
+	std::cout << i << std::endl;
 	//Takes about 2.5 sec to assign 300000 (100k*3)values
 
 	//CODE GOES HERE

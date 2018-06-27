@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="com\data\dataset\DataSet.cpp" />
     <ClCompile Include="com\data\dataset\DataSet_2.cpp" />
+    <ClCompile Include="com\data\dataset\DataSet_3.cpp" />
     <ClCompile Include="com\networks\lstm\lstm.cpp" />
     <ClCompile Include="com\networks\mlp\mlp.cpp" />
     <ClCompile Include="main.cpp" />
@@ -28,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="com\data\dataset\DataSet.h" />
     <ClInclude Include="com\data\dataset\DataSet_2.h" />
+    <ClInclude Include="com\data\dataset\DataSet_3.h" />
     <ClInclude Include="com\networks\lstm\lstm.h" />
     <ClInclude Include="com\networks\mlp\mlp.h" />
   </ItemGroup>

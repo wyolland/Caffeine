@@ -31,6 +31,66 @@ void Value::operator=(std::string v)
 	else { throw - 1; }
 }
 
+Value::operator float()
+{
+	if (t==F32)
+	{
+		return ((Float32*)this)->x;
+	}
+	else
+	{
+		throw - 1;
+	}
+}
+
+Value::operator double()
+{
+	if (t == F64)
+	{
+		return ((Float64*)this)->x;
+	}
+	else
+	{
+		throw - 1;
+	}
+}
+
+Value::operator int()
+{
+	if (t == I32)
+	{
+		return ((Int32*)this)->x;
+	}
+	else
+	{
+		throw - 1;
+	}
+}
+
+Value::operator int64_t()
+{
+	if (t == I64)
+	{
+		return ((Int64*)this)->x;
+	}
+	else
+	{
+		throw - 1;
+	}
+}
+
+Value::operator std::string()
+{
+	if (t == STR)
+	{
+		return ((Str*)this)->x;
+	}
+	else
+	{
+		throw - 1;
+	}
+}
+
 std::ostream & operator<<(std::ostream & o, Value & v)
 {
 	switch (v.t)
