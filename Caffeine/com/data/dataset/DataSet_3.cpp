@@ -48,11 +48,111 @@ std::ostream & operator<<(std::ostream & o, Value & v)
 {
 	switch (v.t)
 	{
-	case F32: o << 0; break;
-	case F64: o << 0; break;
-	case I32: o << 0; break;
-	case I64: o << 0; break;
-	case STR: o << 0; break;
+	case F32: o << (float)v; break;
+	case F64: o << (double)v; break;
+	case I32: o << (int)v; break;
+	case I64: o << (int64_t)v; break;
+	case STR: o << (std::string)v; break;
 	}
+	return o;
+}
+
+
+
+
+Header::Header(std::string * Names, uint8_t * Types, uint32_t Length)
+{
+	n = Length;
+	names = Names;
+	types = Types;
+}
+
+
+
+
+DataPoint::DataPoint(uint32_t n, Header * h)
+{
+	length = n;
+	parent = h;
+	elements = (Value**)malloc(n * sizeof(Value*));
+}
+
+Value& DataPoint::operator[](uint32_t i)
+{
+	size_t offset = 0;
+	for (uint32_t i = 0; i < length; i++)
+	{
+		elements[i]->address = address + offset;
+		switch (parent->types[i])
+		{
+		case F32: offset += sizeof(float); break;
+		case F64: offset += sizeof(double); break;
+		case I32: offset += sizeof(int); break;
+		case I64: offset += sizeof(int64_t); break;
+		case STR: offset += sizeof(uint64_t); break;
+		}
+	}
+	return *elements[i];
+}
+
+std::ostream & operator<<(std::ostream & o, DataPoint & p)
+{
+	for (uint32_t i = 0; i < p.length; i++)
+	{
+		o << p[i] << "\t";
+	}
+	return o;
+}
+
+
+
+
+DataSet::DataSet(Header * head, uint32_t cap)
+{
+	//Is pointer so operator[] wich accesses point will not work
+	//calculate datapoint size
+	datapointsize = 0;
+	datapointcount = 0;
+	insertindex = 0;
+	capacity = cap;
+	point = new DataPoint(head->n, head);
+	for (size_t i = 0; i < head->n; i++)
+	{
+		switch (head->types[i])
+		{
+		case F32: point->elements[i] = new Float32(); datapointsize += sizeof(float); break;
+		case F64: point->elements[i] = new Float64(); datapointsize += sizeof(double); break;
+		case I32: point->elements[i] = new Int32(); datapointsize += sizeof(int); break;
+		case I64: point->elements[i] = new Int64(); datapointsize += sizeof(int64_t); break;
+		case STR: point->elements[i] = new Str(); datapointsize += sizeof(uint64_t); break;
+		}
+	}
+	data = (uint8_t*)malloc(capacity*datapointsize * sizeof(uint8_t));
+	this->head = head;
+}
+
+DataSet::~DataSet()
+{
+}
+
+DataPoint& DataSet::operator[](size_t n)
+{
+	point->address = &data[n*datapointsize];
+	return *point;
+}
+
+std::ostream & operator<<(std::ostream & o, DataSet & p)
+{
+	o << "Printing " << p.name << std::endl
+		<< "Number of Datapoints: " << p.datapointcount << std::endl
+		//Maybe eyport the following to header and overload stream operator
+		<< "Number of attributes: " << p.point->length << std::endl
+		<< "----------------------------------------" << std::endl;
+	for (size_t i = 0; i < p.head->n; i++)
+		o << p.head->names[i] << "\t";
+	o << "\n________________________________________\n" << std::endl
+		<< p[0] << "\n" << p[1] << "\n" << "...\n" << p[p.datapointcount] << std::endl
+		<< "----------------------------------------" << std::endl;
+
 	return o;
 }

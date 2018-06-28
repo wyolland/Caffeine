@@ -51,14 +51,8 @@
     <ClCompile Include="com\networks\mlp\mlp.cpp">
       <Filter>com\AI\machine_learning\neural_networks\MLP</Filter>
     </ClCompile>
-    <ClCompile Include="com\data\dataset\DataSet.cpp">
-      <Filter>com\data\dataset</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>TEST</Filter>
-    </ClCompile>
-    <ClCompile Include="com\data\dataset\DataSet_2.cpp">
-      <Filter>com\data\dataset</Filter>
     </ClCompile>
     <ClCompile Include="com\networks\lstm\lstm.cpp">
       <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>
@@ -70,12 +64,6 @@
   <ItemGroup>
     <ClInclude Include="com\networks\mlp\mlp.h">
       <Filter>com\AI\machine_learning\neural_networks\MLP</Filter>
-    </ClInclude>
-    <ClInclude Include="com\data\dataset\DataSet.h">
-      <Filter>com\data\dataset</Filter>
-    </ClInclude>
-    <ClInclude Include="com\data\dataset\DataSet_2.h">
-      <Filter>com\data\dataset</Filter>
     </ClInclude>
     <ClInclude Include="com\networks\lstm\lstm.h">
       <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>

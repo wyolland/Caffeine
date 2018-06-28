@@ -40,10 +40,10 @@ struct Str : Value { std::string x;	Str(std::string s) :x(s) { t = STR; }	Str() 
 
 struct Header
 {
-	size_t n;
+	uint32_t n;
 	uint8_t* types;
 	std::string* names;
-	Header(std::string*, uint8_t*, size_t);
+	Header(std::string*, uint8_t*, uint32_t);
 	~Header();
 };
 
@@ -52,9 +52,10 @@ struct DataPoint
 	size_t types;
 	uint32_t length;
 	Value** elements;
-	void* parent;
+	Header* parent;
+	uint8_t *address;
 
-	DataPoint(uint32_t, void*);
+	DataPoint(uint32_t, Header*);
 
 
 	Value& operator[](uint32_t);
@@ -74,13 +75,13 @@ struct DataSet
 	DataSet(Header * head, uint32_t cap = 1000);
 	~DataSet();
 
-	void commit();
+	//void commit();
 
-	DataSet& operator+(const DataPoint&);
-	bool operator+=(const DataPoint&);
+	//DataSet& operator+(const DataPoint&);
+	//bool operator+=(const DataPoint&);
 
-	DataSet& operator+(const DataSet&);
-	bool operator+=(const DataSet&);
+	//DataSet& operator+(const DataSet&);
+	//bool operator+=(const DataSet&);
 
 	DataPoint& operator[](size_t);
 	friend std::ostream& operator<<(std::ostream& o, DataSet& p);
