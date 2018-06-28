@@ -146,13 +146,28 @@ std::ostream & operator<<(std::ostream & o, DataSet & p)
 	o << "Printing " << p.name << std::endl
 		<< "Number of Datapoints: " << p.datapointcount << std::endl
 		//Maybe eyport the following to header and overload stream operator
-		<< "Number of attributes: " << p.point->length << std::endl
-		<< "----------------------------------------" << std::endl;
+		<< "Number of attributes: " << p.point->length << std::endl;
+	
+	size_t width = 0;
+	for (size_t i = 0; i < p.head->n; i++)
+		width += p.head->names[i].length() + 8;
+	width -= 8;
+	for (size_t i = 0; i < width; i++)
+		o << "-";
+	o << std::endl;
+
 	for (size_t i = 0; i < p.head->n; i++)
 		o << p.head->names[i] << "\t";
-	o << "\n________________________________________\n" << std::endl
-		<< p[0] << "\n" << p[1] << "\n" << "...\n" << p[p.datapointcount] << std::endl
-		<< "----------------------------------------" << std::endl;
+	o << std::endl;
+
+	for (size_t i = 0; i < width; i++)
+		o << "_";
+	o << std::endl;
+	
+	o << p[0] << "\n" << p[1] << "\n" << "...\n" << p[p.datapointcount] << std::endl;
+
+	for (size_t i = 0; i < width; i++)
+		o << "-";
 
 	return o;
 }
