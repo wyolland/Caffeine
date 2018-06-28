@@ -40,9 +40,6 @@ int main()
 
 	//int i = D[2][0];
 	std::cout << D << std::endl;
-
-	
-	
 #endif
 
 

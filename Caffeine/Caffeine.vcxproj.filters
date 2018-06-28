@@ -57,7 +57,7 @@
     <ClCompile Include="com\networks\lstm\lstm.cpp">
       <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>
     </ClCompile>
-    <ClCompile Include="com\data\dataset\DataSet_3.cpp">
+    <ClCompile Include="com\data\dataset\DataSet.cpp">
       <Filter>com\data\dataset</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +68,7 @@
     <ClInclude Include="com\networks\lstm\lstm.h">
       <Filter>com\AI\machine_learning\neural_networks\LSTM</Filter>
     </ClInclude>
-    <ClInclude Include="com\data\dataset\DataSet_3.h">
+    <ClInclude Include="com\data\dataset\DataSet.h">
       <Filter>com\data\dataset</Filter>
     </ClInclude>
   </ItemGroup>
