@@ -24,19 +24,21 @@ int main()
 
 
 	Header* h = new Header(new std::string[3]{ "Index","Value","Label" }, new uint8_t[3]{ I32,F64,STR }, 3);
-	DataSet D(h,10);
+	DataSet D(h,1000000);
 	
 	
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 1000000; i++)
 	{
 		D[i][0] = i;
 		D[i][1] = 0.1*i;
 		D[i][2] = i%2?"A":"B";
+		
+		//std::cout << D[i] << std::endl;
 	}
 
 	//int i = D[2][0];
-	std::cout << D << std::endl; //not properly saving values
-	//Takes about 2.5 sec to assign 300000 (100k*3)values
+	//std::cout << D << std::endl; //not properly reading values
+	//Takes about 5 sec to assign 3000000 (1000k*3)values
 
 	//CODE GOES HERE
 #ifdef DATASET_EXAMPLE

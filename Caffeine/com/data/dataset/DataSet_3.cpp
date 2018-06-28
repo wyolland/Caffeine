@@ -80,10 +80,10 @@ DataPoint::DataPoint(uint32_t n, Header * h)
 Value& DataPoint::operator[](uint32_t i)
 {
 	size_t offset = 0;
-	for (uint32_t i = 0; i < length; i++)
+	for (uint32_t j = 0; j < length; j++)
 	{
-		elements[i]->address = address + offset;
-		switch (parent->types[i])
+		elements[j]->address = address + offset;
+		switch (parent->types[j])
 		{
 		case F32: offset += sizeof(float); break;
 		case F64: offset += sizeof(double); break;
@@ -164,7 +164,14 @@ std::ostream & operator<<(std::ostream & o, DataSet & p)
 		o << "_";
 	o << std::endl;
 	
-	o << p[0] << "\n" << p[1] << "\n" << "...\n" << p[p.datapointcount] << std::endl;
+	for (size_t i = 0; i < 10; i++)
+	{
+		o << p[i] << std::endl;
+
+	}
+	//o << p[1] << std::endl; 
+	//o << "..." << std::endl;
+	//o << p[p.datapointcount] << std::endl;
 
 	for (size_t i = 0; i < width; i++)
 		o << "-";
