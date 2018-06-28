@@ -8,7 +8,7 @@
 
 //Define
 //#define DATASET_EXAMPLE
-
+#define MLP_EXAMPLE
 
 
 void enter_to_return(double);
@@ -20,64 +20,50 @@ int main()
 {
 	exec_time = clock();
 
+	//CODE GOES HERE
 
 
-
-	Header* h = new Header(new std::string[3]{ "Index","Value","Label" }, new uint8_t[3]{ I32,F64,STR }, 3);
-	DataSet D(h,1000000);
+#ifdef DATASET_EXAMPLE
+	Header* h = new Header(new std::string[4]{ "Index", "Name", "Value",  "Label" }, new uint8_t[4]{ I32, STR, F64,STR }, 4);
+	DataSet D(h,10);
 	
 	
-	for (int i = 0; i < 1000000; i++)
+	//Takes about 5 sec to assign 3000000 (1M*3)values -> Benchmark
+	for (int i = 0; i < 10; i++)
 	{
 		D[i][0] = i;
-		D[i][1] = 0.1*i;
-		D[i][2] = i%2?"A":"B";
-		
+		D[i][1] = i % 2 ? "Leander" : "Julian";
+		D[i][2] = 0.1*i;
+		D[i][3] = i%2?"A":"B";
 		//std::cout << D[i] << std::endl;
 	}
 
 	//int i = D[2][0];
-	//std::cout << D << std::endl; //not properly reading values
-	//Takes about 5 sec to assign 3000000 (1000k*3)values
+	std::cout << D << std::endl;
 
-	//CODE GOES HERE
-#ifdef DATASET_EXAMPLE
-	Header * h = new Header(new std::string[3]{ "Name","Gewicht","Grösse" }, new int[3]{ STR,F64,F32 }, 3);
-	Tuple * t = new Tuple(3);
-	Data d(h, 100000);
-
-
-	Value * n = new Str("Leo");
-	Value * w = new Float64(110.5);
-	Value * s = new Float32(187.3f);
 	
-	t->set(0, n);
-	t->set(1, w);
-	t->set(2, s);
 	
-
-
-	d+=(*t);
-
-	for (int i = 1; i < 10000; i++)
-	{
-		((Str*)n)->x = "Julian";
-		((Float64*)w)->x = 82.5 + 1.0/i;
-		((Float32*)s)->x = 172.1f + i/100.0;
-
-		d+=(*t);
-	}
-
-	std::cout << d;
 #endif
 
 
 
 #ifdef MLP_EXAMPLE
-	printf("MLP training XOR...\n");
-	Header * h = new Header(new std::string[3]{ "A","B","Label" }, new int[3]{ I32,I32,STR }, 4);
-	Tuple * t = new Tuple(3);
+	//printf("MLP training XOR...\n");
+	Header * h = new Header(new std::string[3]{ "A","B","Label" }, new uint8_t[3]{ I32,I32,STR }, 3);
+	DataSet D(h, 4);
+	D.name = "XOR Dataset";
+	for (size_t i = 0; i < 4; i++)
+	{
+		D[i][0] = (i/2) >= 1 ? 1:0;
+		D[i][1] = i % 2 ? 1 : 0;
+	}
 
+	D[0][2] = "False";
+	D[1][2] = "True";
+	D[2][2] = "True";
+	D[3][2] = "False";
+
+	std::cout << D << std::endl;
 #endif
 
 	enter_to_return((clock() - exec_time) / (CLOCKS_PER_SEC / 1000.0));

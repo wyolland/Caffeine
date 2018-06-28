@@ -67,6 +67,11 @@ Header::Header(std::string * Names, uint8_t * Types, uint32_t Length)
 	types = Types;
 }
 
+Header::~Header()
+{
+
+}
+
 
 
 
@@ -79,17 +84,20 @@ DataPoint::DataPoint(uint32_t n, Header * h)
 
 Value& DataPoint::operator[](uint32_t i)
 {
-	size_t offset = 0;
-	for (uint32_t j = 0; j < length; j++)
+	if (elements[0]->address != address)
 	{
-		elements[j]->address = address + offset;
-		switch (parent->types[j])
+		size_t offset = 0;
+		for (uint32_t j = 0; j < length; j++)
 		{
-		case F32: offset += sizeof(float); break;
-		case F64: offset += sizeof(double); break;
-		case I32: offset += sizeof(int); break;
-		case I64: offset += sizeof(int64_t); break;
-		case STR: offset += sizeof(uint64_t); break;
+			elements[j]->address = address + offset;
+			switch (parent->types[j])
+			{
+			case F32: offset += sizeof(float); break;
+			case F64: offset += sizeof(double); break;
+			case I32: offset += sizeof(int); break;
+			case I64: offset += sizeof(int64_t); break;
+			case STR: offset += sizeof(uint64_t); break;
+			}
 		}
 	}
 	return *elements[i];
@@ -98,9 +106,7 @@ Value& DataPoint::operator[](uint32_t i)
 std::ostream & operator<<(std::ostream & o, DataPoint & p)
 {
 	for (uint32_t i = 0; i < p.length; i++)
-	{
 		o << p[i] << "\t";
-	}
 	return o;
 }
 
@@ -109,8 +115,6 @@ std::ostream & operator<<(std::ostream & o, DataPoint & p)
 
 DataSet::DataSet(Header * head, uint32_t cap)
 {
-	//Is pointer so operator[] wich accesses point will not work
-	//calculate datapoint size
 	datapointsize = 0;
 	datapointcount = 0;
 	insertindex = 0;
@@ -144,14 +148,14 @@ DataPoint& DataSet::operator[](size_t n)
 std::ostream & operator<<(std::ostream & o, DataSet & p)
 {
 	o << "Printing " << p.name << std::endl
-		<< "Number of Datapoints: " << p.datapointcount << std::endl
+		//<< "Number of Datapoints: " << p.datapointcount << std::endl
 		//Maybe eyport the following to header and overload stream operator
 		<< "Number of attributes: " << p.point->length << std::endl;
 	
 	size_t width = 0;
 	for (size_t i = 0; i < p.head->n; i++)
-		width += p.head->names[i].length() + 8;
-	width -= 8;
+		width += p.head->names[i].length() + 8 - (p.head->names[i].length() % 8);
+	
 	for (size_t i = 0; i < width; i++)
 		o << "-";
 	o << std::endl;
@@ -164,11 +168,10 @@ std::ostream & operator<<(std::ostream & o, DataSet & p)
 		o << "_";
 	o << std::endl;
 	
-	for (size_t i = 0; i < 10; i++)
-	{
+	for (size_t i = 0; i < 4; i++)
 		o << p[i] << std::endl;
 
-	}
+	//o << p[999999] << std::endl;
 	//o << p[1] << std::endl; 
 	//o << "..." << std::endl;
 	//o << p[p.datapointcount] << std::endl;

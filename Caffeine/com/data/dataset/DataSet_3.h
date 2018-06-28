@@ -75,8 +75,6 @@ struct DataSet
 	DataSet(Header * head, uint32_t cap = 1000);
 	~DataSet();
 
-	//void commit();
-
 	//DataSet& operator+(const DataPoint&);
 	//bool operator+=(const DataPoint&);
 
