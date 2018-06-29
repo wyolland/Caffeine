@@ -28,6 +28,8 @@
     <ClInclude Include="com\data\dataset\DataSet.h" />
     <ClInclude Include="com\networks\lstm\lstm.h" />
     <ClInclude Include="com\networks\mlp\mlp.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Tensor.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="TODO.txt" />

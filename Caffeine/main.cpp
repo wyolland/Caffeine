@@ -4,7 +4,7 @@
 #include <ctime>
 #include <cmath>
 
-#include "com\data\dataset\DataSet_3.h"
+#include "com\data\dataset\DataSet.h"
 
 //Define
 //#define DATASET_EXAMPLE
